@@ -1,6 +1,7 @@
 <?php
 
 use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +21,6 @@ Route::get('/', function () {
 
 
 Route::get('/email', function () {
+    Mail::to('info@dan.com')->send(new WelcomeMail());
     return new WelcomeMail();
 });
