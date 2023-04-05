@@ -29,7 +29,7 @@ class DailyMessage extends Command
     public function handle()
     {
         $test = DB::table('test')->where('id', 1)->value('stock');
-        if ($test == 6) {
+        if ($test == 4) {
             echo 'this is my first message';
         }
         else {

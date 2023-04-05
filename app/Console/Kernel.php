@@ -8,6 +8,7 @@ use App\Models\Test;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Mail;
 
 class Kernel extends ConsoleKernel
 {
@@ -27,7 +28,15 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('daily:message')
             ->everyMinute()
-            ->appendOutputTo('scheduler.log');
+            ->appendOutputTo('scheduler.log')
+            ->emailOutputTo('info@dan.com');
+
+
+
+            // ->onSuccess(function () {
+            //     $email = new DemoEmail();
+            //     Mail::to('youremail@example.com')->send($email);
+            // });
     }
 
     /**
@@ -37,7 +46,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
