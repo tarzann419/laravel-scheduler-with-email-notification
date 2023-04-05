@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use App\Mail\WelcomeMail;
+use App\Mail\StockControlMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +26,15 @@ Route::get('/email', function () {
     Mail::to('info@dan.com')->send(new WelcomeMail());
     return new WelcomeMail();
 });
+
+Route::get('/stock', function () {
+    Mail::to('info@dan.com')->send(new StockControlMail());
+    return new StockControlMail();
+});
+
+
+
+
+
+Route::get('/mailsend', [MailController::class, 'sendMail'] 
+);
